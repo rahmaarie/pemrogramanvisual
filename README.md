@@ -1,11 +1,9 @@
 # Kasir Kedai Makan Cihuy
 
 ## 🔗 Link Proyek Figma
-[Klik di sini untuk melihat desain di Figma](https://www.figma.com/design/UYnlFqQsEOyduR08xcKj9u/kedaimakan?node-id=0-1)
+https://www.figma.com/design/UYnlFqQsEOyduR08xcKj9u/kedaimakan?node-id=0-1
 
 ![image](https://github.com/user-attachments/assets/83be5d41-267f-410c-a78c-006ffa7365bc)
-
-https://www.figma.com/design/UYnlFqQsEOyduR08xcKj9u/kedaimakan?node-id=24-40&t=rIcVeQaeGVD9XZSK-4
 
 Desain ini merupakan bagian dari tugas mata kuliah *Pemrograman Visual* yang bertujuan untuk membuat antarmuka (UI) aplikasi kasir sederhana untuk sebuah kedai makan. Proyek ini dirancang menggunakan Figma dengan pendekatan yang ramah pengguna, modern, dan mudah digunakan.
 
@@ -25,7 +23,7 @@ Membuat tampilan antarmuka aplikasi kasir untuk sebuah usaha kuliner bernama **K
 - **Figma** sebagai tools utama dalam desain UI.
 - Menggunakan layout sederhana, ikon, dan ilustrasi vektor untuk tampilan profesional namun bersahabat.
 
-## 🛠️ Fitur yang Direncanakan (Roadmap)
+## Fitur yang Direncanakan 
 - Tampilan Menu Utama dengan tombol navigasi:
   - Input Pesanan
   - Lihat Daftar Menu
