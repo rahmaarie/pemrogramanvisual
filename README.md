@@ -1,7 +1,6 @@
 # Kasir Kedai Makan Cihuy
 
-## 🔗 Link Proyek Figma
-https://www.figma.com/design/UYnlFqQsEOyduR08xcKj9u/kedaimakan?node-id=0-1
+## 🔗 Link Proyek Figma : https://www.figma.com/design/UYnlFqQsEOyduR08xcKj9u/kedaimakan?node-id=0-1
 
 ![image](https://github.com/user-attachments/assets/83be5d41-267f-410c-a78c-006ffa7365bc)
 
