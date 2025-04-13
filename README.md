@@ -3,7 +3,7 @@
 ## 🔗 Link Proyek Figma
 [Klik di sini untuk melihat desain di Figma](https://www.figma.com/design/UYnlFqQsEOyduR08xcKj9u/kedaimakan?node-id=0-1)
 
-![image](https://github.com/user-attachments/assets/419a8257-bcaf-42cb-a841-7776e3349144)
+![image](https://github.com/user-attachments/assets/83be5d41-267f-410c-a78c-006ffa7365bc)
 
 https://www.figma.com/design/UYnlFqQsEOyduR08xcKj9u/kedaimakan?node-id=24-40&t=rIcVeQaeGVD9XZSK-4
 
