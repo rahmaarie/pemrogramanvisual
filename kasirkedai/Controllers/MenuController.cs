@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using kasirkedai.Models;
-using kasirkedai.models;
+
 
 namespace kasirkedai.Controllers
 {
@@ -43,7 +43,7 @@ namespace kasirkedai.Controllers
             selectedPrices.Clear();
         }
 
-        public bool SimpanPesanan(string namamenu,string metodePembayaran, string lokasi, string namaPemesan, out string pesan)
+        public bool SimpanPesanan(string metodePembayaran, string lokasi, string namaPemesan, out string pesan)
         {
             if (selectedMenus.Count == 0)
             {
@@ -53,7 +53,8 @@ namespace kasirkedai.Controllers
 
             try
             {
-                int idTransaksi = MenuService.InsertTransaksi(namamenu,metodePembayaran, lokasi, namaPemesan);
+                int idTransaksi = MenuService.InsertTransaksi(metodePembayaran, lokasi, namaPemesan, DateTime.Now);
+
                 for (int i = 0; i < selectedMenus.Count; i++)
                 {
                     MenuService.InsertDetailPesanan(idTransaksi, selectedMenus[i], selectedQuantities[i], selectedPrices[i]);
@@ -68,6 +69,7 @@ namespace kasirkedai.Controllers
                 return false;
             }
         }
+
     }
 }
 

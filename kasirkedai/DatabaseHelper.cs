@@ -7,17 +7,16 @@ using Microsoft.Data.SqlClient;
 
 namespace kasirkedai
 {
-    class DatabaseHelper
+ 
+    public static class DatabaseHelper
     {
-        public static class DatabaseConnection
+        private static readonly string connectionString =
+            "Data Source=RAHMA;Initial Catalog=kasirkedaidb;Integrated Security=True;TrustServerCertificate=True;";
+
+        public static SqlConnection GetConnection()
         {
-            private static readonly string connectionString = "Data Source=RAHMA;Initial Catalog=kasirkedaidb;Integrated Security=True;TrustServerCertificate=True;";
-
-            public static SqlConnection GetConnection()
-            {
-                return new SqlConnection(connectionString);
-            }
+            return new SqlConnection(connectionString);
         }
-
     }
+
 }

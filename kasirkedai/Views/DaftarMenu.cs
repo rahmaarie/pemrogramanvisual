@@ -41,24 +41,30 @@ namespace kasirkedai
         }
 
         private void button4_Click(object sender, EventArgs e)
-        {   
-            string namamenu = comboBox1.Text.Trim();
-            string pembayaran = comboBox2.Text;
-            string lokasi = comboBox3.Text;
-            string namaPemesan = textBox2.Text;
+        {
+            string namaMenu = comboBox1.Text.Trim();
+            string metodePembayaran = comboBox2.Text.Trim(); // ✅ sudah dideklarasikan
+            string lokasi = comboBox3.Text.Trim();
+            string namaPemesan = textBox2.Text.Trim();
 
-            if (string.IsNullOrEmpty(namamenu) || string.IsNullOrEmpty(pembayaran) || string.IsNullOrEmpty(lokasi) || string.IsNullOrEmpty(namaPemesan))
+            if (string.IsNullOrEmpty(metodePembayaran) || string.IsNullOrEmpty(lokasi) || string.IsNullOrEmpty(namaPemesan))
             {
                 MessageBox.Show("Harap isi semua data pemesanan!");
                 return;
             }
 
-            bool berhasil = controller.SimpanPesanan(namamenu,pembayaran, lokasi, namaPemesan, out string pesan);
+
+            bool berhasil = controller.SimpanPesanan(metodePembayaran, lokasi, namaPemesan, out string pesan);
             MessageBox.Show(pesan);
 
             if (berhasil)
             {
                 listBox1.Items.Clear();
+                comboBox1.SelectedIndex = -1;
+                comboBox2.SelectedIndex = -1;
+                comboBox3.SelectedIndex = -1;
+                textBox2.Clear();
+                numericUpDown1.Value = 1;
             }
         }
 
@@ -88,7 +94,8 @@ namespace kasirkedai
             {
                 MessageBox.Show("Gagal mengambil data menu: " + ex.Message);
             }
-            comboBox1 = new ComboBox();
+
+            // ✅ HAPUS baris comboBox1 = new ComboBox();
             comboBox2.Items.AddRange(new string[] { "Cash", "QRIS", "Debit" });
             comboBox3.Items.AddRange(new string[] { "Dine In", "Take Away" });
 
@@ -162,6 +169,8 @@ namespace kasirkedai
             decimal total = jumlah * harga;
 
             listBox1.Items.Add($"{namaMenu} x{jumlah} = Rp{total:N0}");
+            MessageBox.Show("Menu berhasil ditambahkan!");
+
             comboBox1.SelectedIndex = -1;
             numericUpDown1.Value = 1;
 

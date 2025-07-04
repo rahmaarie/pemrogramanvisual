@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using kasirkedai.Controllers;
+using kasirkedai.Models;
+using System.Drawing.Printing;
+
+
+
 
 namespace kasirkedai
 {
@@ -114,7 +119,6 @@ namespace kasirkedai
         {
             string keyword = textBox9.Text.Trim().ToLower();
 
-            // Hindari error dengan menghapus fokus dari current cell
             dataGridViewRiwayat.CurrentCell = null;
 
             foreach (DataGridViewRow row in dataGridViewRiwayat.Rows)
@@ -252,5 +256,80 @@ namespace kasirkedai
         {
 
         }
-    }
+        private ReceiptPayload BuildReceiptPayload()
+        {
+            var payload = new ReceiptPayload
+            {
+                NoPesanan = textBox1.Text,
+                Tanggal = dateTimePickerTanggal.Value
+            };
+
+            foreach (DataGridViewRow row in dataGridViewRiwayat.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                payload.Items.Add(new ReceiptItem
+                {
+                    No = payload.Items.Count + 1,
+                    Nama = row.Cells["namamenu"].Value?.ToString(),   // samakan dengan nama kolom
+                    Qty = Convert.ToInt32(row.Cells["Jumlah"].Value),
+                    Harga = Convert.ToDecimal(row.Cells["TotalHarga"].Value)
+                });
+            }
+
+            return payload;
+        }
+
+        private void btnprint_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewRiwayat.CurrentRow == null)
+            {
+                MessageBox.Show("Pilih riwayat pesanan dulu");
+                return;
+            }
+
+            var payload = BuildReceiptPayload();   // ← panggil method yang baru dibetulkan
+
+
+        }
+
+        private void btnprint_Click_1(object sender, EventArgs e)
+        {
+            // Pastikan data lengkap
+            if (string.IsNullOrEmpty(selectedIdTransaksi))
+            {
+                MessageBox.Show("Pilih transaksi dulu dengan tombol Cek.");
+                return;
+            }
+
+            PrintDocument pd = new PrintDocument();
+            pd.PrinterSettings.PrinterName = "Microsoft Print to PDF";   // pilih printer PDF bawaan Windows:contentReference[oaicite:0]{index=0}
+            pd.DocumentName = $"Struk_{selectedIdTransaksi}";
+
+            // Gambar struk di sini
+            pd.PrintPage += (s, args) =>
+            {
+                float y = 20;
+                Font font = new Font("Segoe UI", 10);
+
+                // Header
+                args.Graphics.DrawString($"No Pesanan : {textBox1.Text}", font, Brushes.Black, 20, y); y += 20;
+                args.Graphics.DrawString($"Tanggal    : {dateTimePickerTanggal.Value:dd/MM/yyyy}", font, Brushes.Black, 20, y); y += 30;
+
+                // Detail item tunggal (atau beberapa bila mau)
+                args.Graphics.DrawString($"Menu       : {textBox2.Text}", font, Brushes.Black, 20, y); y += 20;
+                args.Graphics.DrawString($"Qty        : {textBox3.Text}", font, Brushes.Black, 20, y); y += 20;
+                args.Graphics.DrawString($"Harga      : {textBox4.Text}", font, Brushes.Black, 20, y); y += 20;
+                args.Graphics.DrawString($"Total      : {textBox5.Text}", font, Brushes.Black, 20, y); y += 30;
+
+                // Footer
+                args.Graphics.DrawString($"Pembayaran : {textBox6.Text}", font, Brushes.Black, 20, y); y += 20;
+                args.Graphics.DrawString($"Lokasi     : {textBox7.Text}", font, Brushes.Black, 20, y);
+            };
+
+            // Akan mem‑popup dialog “Save Print Output As…”
+            pd.Print();
+
+        }
+    }   
 }

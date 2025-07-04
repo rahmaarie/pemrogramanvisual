@@ -36,6 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewRiwayat = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnprint = new System.Windows.Forms.Button();
             this.dateTimePickerTanggal = new System.Windows.Forms.DateTimePicker();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -142,6 +143,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnprint);
             this.groupBox1.Controls.Add(this.dateTimePickerTanggal);
             this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.button4);
@@ -170,6 +172,18 @@
             this.groupBox1.Visible = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // btnprint
+            // 
+            this.btnprint.BackColor = System.Drawing.Color.Gold;
+            this.btnprint.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnprint.Location = new System.Drawing.Point(467, 164);
+            this.btnprint.Name = "btnprint";
+            this.btnprint.Size = new System.Drawing.Size(99, 41);
+            this.btnprint.TabIndex = 20;
+            this.btnprint.Text = "Cetak";
+            this.btnprint.UseVisualStyleBackColor = false;
+            this.btnprint.Click += new System.EventHandler(this.btnprint_Click_1);
+            // 
             // dateTimePickerTanggal
             // 
             this.dateTimePickerTanggal.Location = new System.Drawing.Point(349, 121);
@@ -182,9 +196,9 @@
             // 
             this.button5.BackColor = System.Drawing.Color.Coral;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(48, 168);
+            this.button5.Location = new System.Drawing.Point(57, 172);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(87, 36);
+            this.button5.Size = new System.Drawing.Size(94, 35);
             this.button5.TabIndex = 18;
             this.button5.Text = "Back";
             this.button5.UseVisualStyleBackColor = false;
@@ -194,9 +208,9 @@
             // 
             this.button4.BackColor = System.Drawing.Color.Coral;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(340, 169);
+            this.button4.Location = new System.Drawing.Point(290, 172);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(87, 35);
+            this.button4.Size = new System.Drawing.Size(94, 35);
             this.button4.TabIndex = 17;
             this.button4.Text = "Delete";
             this.button4.UseVisualStyleBackColor = false;
@@ -206,9 +220,9 @@
             // 
             this.button3.BackColor = System.Drawing.Color.Coral;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(204, 168);
+            this.button3.Location = new System.Drawing.Point(175, 172);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(87, 35);
+            this.button3.Size = new System.Drawing.Size(89, 35);
             this.button3.TabIndex = 16;
             this.button3.Text = "Update";
             this.button3.UseVisualStyleBackColor = false;
@@ -406,5 +420,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.DateTimePicker dateTimePickerTanggal;
+        private System.Windows.Forms.Button btnprint;
     }
 }

@@ -13,7 +13,7 @@ namespace kasirkedai.Models
     {
         public DataTable GetRiwayat()
         {
-            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
                 string query = @"
@@ -32,7 +32,7 @@ namespace kasirkedai.Models
 
         public void UpdateTransaksi(string id, string namaPemesan, string metode, string lokasi, int jumlah, decimal harga)
         {
-            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
 
@@ -69,7 +69,7 @@ namespace kasirkedai.Models
 
         public void DeleteTransaksi(string id)
         {
-            using (SqlConnection conn = DatabaseConnection.GetConnection())
+             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
                 string deleteDetail = "DELETE FROM tbdetailpesanan WHERE IdTransaksi = @id";

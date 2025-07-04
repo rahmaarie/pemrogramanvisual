@@ -64,5 +64,9 @@ namespace kasirkedai
             Application.Exit();
         }
 
+        private void FormLogin_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

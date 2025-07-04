@@ -22,7 +22,7 @@ namespace kasirkedai
             splash.Close();
 
             // Tampilkan form login
-            Application.Run(new FormLogin());
+            Application.Run(new Form1());
         }
     }
 }

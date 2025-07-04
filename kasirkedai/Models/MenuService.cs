@@ -7,7 +7,7 @@ using static kasirkedai.DatabaseHelper;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace kasirkedai.models
+namespace kasirkedai.Models
 {
 
     public class MenuService
@@ -15,7 +15,7 @@ namespace kasirkedai.models
         public static List<string> GetNamaMenu()
         {
             List<string> menuList = new List<string>();
-            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
                 string query = "SELECT namamenu FROM tbmenu";
@@ -36,7 +36,7 @@ namespace kasirkedai.models
         public static decimal GetHargaMenu(string namaMenu)
         {
             decimal harga = 0;
-            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
                 string query = "SELECT Harga FROM tbmenu WHERE namamenu = @nama";
@@ -53,29 +53,32 @@ namespace kasirkedai.models
             return harga;
         }
 
-        public static int InsertTransaksi(string namamenu,string metode, string lokasi, string namaPemesan)
+        public static int InsertTransaksi(string metodePembayaran, string lokasi, string namaPemesan, DateTime tanggal)
         {
-            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string insertTransaksi = "INSERT INTO tbtransaksi (Tanggal,namamenu, MetodePembayaran, Lokasi, NamaPemesan) VALUES (@tanggal,@namamenu, @pembayaran, @lokasi, @namaPemesan); SELECT SCOPE_IDENTITY();";
-                using (SqlCommand cmd = new SqlCommand(insertTransaksi, conn))
+
+                string query = @"INSERT INTO tbtransaksi (MetodePembayaran, Lokasi, NamaPemesan, Tanggal)
+                         VALUES (@metodePembayaran, @lokasi, @namaPemesan, @tanggal);
+                         SELECT SCOPE_IDENTITY();";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@tanggal", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@namamenu",namamenu);
-                    cmd.Parameters.AddWithValue("@pembayaran", metode);
+                    cmd.Parameters.AddWithValue("@metodePembayaran", metodePembayaran);
                     cmd.Parameters.AddWithValue("@lokasi", lokasi);
                     cmd.Parameters.AddWithValue("@namaPemesan", namaPemesan);
+                    cmd.Parameters.AddWithValue("@tanggal", tanggal);
 
-                    object result = cmd.ExecuteScalar();
-                    return (result != null) ? Convert.ToInt32(Convert.ToDecimal(result)) : 0;
+                    int idTransaksi = Convert.ToInt32(cmd.ExecuteScalar());
+                    return idTransaksi;
                 }
             }
         }
 
         public static void InsertDetailPesanan(int idTransaksi, string namaMenu, int jumlah, decimal harga)
         {
-            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
                 string getIdMenuQuery = "SELECT IdMenu FROM tbmenu WHERE namamenu = @nama";
@@ -102,7 +105,7 @@ namespace kasirkedai.models
 
         public static DataTable GetRiwayatPesanan()
         {
-            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
                 string query = @"

@@ -14,6 +14,10 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <LangVersion>9.0</LangVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -168,8 +172,8 @@
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="Helper\DatabaseDM.cs" />
     <Compile Include="Models\MenuService.cs" />
+    <Compile Include="Models\ReceiptPayload.cs" />
     <Compile Include="Models\RiwayatPesananModel.cs" />
-    <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Program.cs" />
